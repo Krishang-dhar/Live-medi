@@ -64,8 +64,9 @@ function App() {
     setPrediction(null)
 
     try {
-      // Use relative URL - Vercel will route /api/* to serverless functions
-      const response = await axios.post('/api/predict', {
+      // Get API URL from environment or use relative
+      const apiUrl = import.meta.env.VITE_API_URL || '/api/predict'
+      const response = await axios.post(apiUrl, {
         symptoms: Array.from(selectedSymptoms)
       })
       setPrediction(response.data.disease)
