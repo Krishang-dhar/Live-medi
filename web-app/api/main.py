@@ -25,14 +25,16 @@ app.add_middleware(
 
 # Load the model
 # Try multiple possible paths (including Vercel serverless paths)
+# In Vercel, files are relative to the function location
 possible_paths = [
     os.path.join(os.path.dirname(__file__), "..", "saved_model", "random_forest.joblib"),
     os.path.join(os.path.dirname(__file__), "..", "..", "saved_model", "random_forest.joblib"),
     os.path.join(os.path.dirname(__file__), "..", "..", "..", "saved_model", "random_forest.joblib"),
+    os.path.join(os.getcwd(), "saved_model", "random_forest.joblib"),
+    os.path.join(os.getcwd(), "..", "saved_model", "random_forest.joblib"),
     "./saved_model/random_forest.joblib",
     "../saved_model/random_forest.joblib",
     "../../saved_model/random_forest.joblib",
-    "/var/task/saved_model/random_forest.joblib",  # Vercel serverless path
 ]
 
 model = None
