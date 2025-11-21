@@ -1,4 +1,4 @@
-# 🚀 Simple Setup Guide - Run Locally
+# 🚀 How to Run on Localhost
 
 ## Prerequisites
 
