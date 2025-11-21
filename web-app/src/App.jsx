@@ -65,9 +65,14 @@ function App() {
 
     try {
       // Get API URL from environment or use relative
+      // If deploying backend separately, set VITE_API_URL in Vercel env vars
       const apiUrl = import.meta.env.VITE_API_URL || '/api/predict'
       const response = await axios.post(apiUrl, {
         symptoms: Array.from(selectedSymptoms)
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
       setPrediction(response.data.disease)
     } catch (err) {
