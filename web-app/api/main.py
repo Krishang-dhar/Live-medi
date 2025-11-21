@@ -157,8 +157,12 @@ def get_symptoms():
 
 
 # Vercel serverless function handler
+# Must be at the end of the file
 from mangum import Mangum
 handler = Mangum(app, lifespan="off")
+
+# Export handler for Vercel
+__all__ = ['handler']
 
 # For local development
 if __name__ == "__main__":
