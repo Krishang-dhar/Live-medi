@@ -30,8 +30,8 @@ class DiseasePrediction:
         self.train_features, self.train_labels, self.train_df = self._load_train_dataset()
         # Load Test Data
         self.test_features, self.test_labels, self.test_df = self._load_test_dataset()
-        # Feature Correlation in Training Data
-        self._feature_correlation(data_frame=self.train_df, show_fig=False)
+        # Feature Correlation in Training Data (only on features, not labels)
+        self._feature_correlation(data_frame=self.train_features, show_fig=False)
         # Model Definition
         self.model_name = model_name
         # Model Save Path

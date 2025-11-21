@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "web-app/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "web-app/dist"
+      }
+    },
+    {
+      "src": "web-app/api/main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "web-app/api/main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/web-app/$1"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/web-app/api/main.py"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+
