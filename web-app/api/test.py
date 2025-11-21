@@ -2,6 +2,6 @@ def handler(request):
     return {
         "statusCode": 200,
         "headers": {"Content-Type": "application/json"},
-        "body": '{"message": "API is working!", "status": "ok"}'
+        "body": '{"message": "API is working!", "status": "ok", "test": "success"}'
     }
 
