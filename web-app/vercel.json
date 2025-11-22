@@ -1,16 +1,6 @@
 {
-  "buildCommand": "pnpm run vercel-build",
-  "outputDirectory": "dist",
-  "installCommand": "pnpm install",
-  "framework": "vite",
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/main"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "framework": "nextjs",
+  "buildCommand": "pnpm install && pnpm run build",
+  "devCommand": "pnpm dev",
+  "installCommand": "pnpm install"
 }
