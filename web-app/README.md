@@ -1,103 +1,59 @@
-# Disease Prediction Web App
+# MediPredict - Disease Prediction Web App
 
-A modern, simple web application for predicting diseases from symptoms using machine learning.
+AI-powered disease prediction system built with Next.js, TypeScript, and Machine Learning.
 
 ## Features
 
-- 🎨 Beautiful, modern UI with Tailwind CSS
-- 🔍 Search functionality for symptoms
-- ⚡ Fast and responsive
-- 🎯 Easy symptom selection with checkboxes
-- 📱 Mobile-friendly design
+- 🧠 AI-powered symptom analysis
+- 📱 Fully responsive design
+- ⚡ Fast predictions using Random Forest model
+- 🎨 Clean and modern UI
+- 🔍 Symptom search functionality
 
 ## Tech Stack
 
-- **Frontend**: React + Vite + Tailwind CSS
-- **Backend**: FastAPI (Python)
-- **ML Model**: Random Forest (scikit-learn)
+- **Frontend**: Next.js 16, React 19, TypeScript
+- **Styling**: Tailwind CSS 4
+- **Icons**: Lucide React
+- **ML Models**: Random Forest, Decision Tree, Naive Bayes, Gradient Boosting
 
-## Setup Instructions
+## Getting Started
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
-- pnpm (package manager)
-- Python 3.8+
-- Pre-trained ML models in `../saved_model/` directory
+- Node.js 18+ 
+- Python 3.9+ (for ML predictions)
+- pnpm (or npm/yarn)
 
 ### Installation
 
-1. **Install frontend dependencies**:
-   ```bash
-   cd web-app
-   pnpm install
-   ```
-
-2. **Install backend dependencies**:
-   ```bash
-   cd api
-   pip install -r requirements.txt
-   ```
-
-### Running the Application
-
-1. **Start the backend server** (in one terminal):
-   ```bash
-   cd web-app/api
-   python main.py
-   ```
-   The API will run on `http://localhost:8000`
-
-2. **Start the frontend** (in another terminal):
-   ```bash
-   cd web-app
-   pnpm dev
-   ```
-   The app will open at `http://localhost:3000`
-
-### Building for Production
-
+1. Install dependencies:
 ```bash
-# Build frontend
-pnpm build
-
-# The built files will be in the `dist` directory
+pnpm install
 ```
 
-## Project Structure
+2. Make sure the ML model is available at `../saved_model/random_forest.joblib`
 
-```
-web-app/
-├── api/
-│   ├── main.py              # FastAPI backend server
-│   └── requirements.txt     # Python dependencies
-├── src/
-│   ├── components/
-│   │   ├── SymptomSelector.jsx
-│   │   └── PredictionResult.jsx
-│   ├── App.jsx              # Main app component
-│   ├── main.jsx             # Entry point
-│   └── index.css            # Global styles
-├── package.json
-├── vite.config.js
-└── tailwind.config.js
+3. Run the development server:
+```bash
+pnpm dev
 ```
 
-## API Endpoints
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-- `GET /` - API status
-- `GET /api/health` - Health check
-- `POST /api/predict` - Predict disease from symptoms
-- `GET /api/symptoms` - Get list of all available symptoms
+## Deployment
 
-## Usage
+### Vercel
 
-1. Open the web app in your browser
-2. Search and select symptoms from the list
-3. Click "Predict Disease" button
-4. View the predicted disease result
+1. Push to GitHub
+2. Import project in Vercel
+3. Configure Python runtime for API routes
+4. Deploy!
 
-## Important Disclaimer
+## Important Notes
 
-⚠️ **This application is for demonstration purposes only. Always consult with a qualified healthcare professional for accurate diagnosis and treatment.**
+⚠️ **Educational purposes only** - Always consult a healthcare professional for medical advice.
 
+## License
+
+MIT
