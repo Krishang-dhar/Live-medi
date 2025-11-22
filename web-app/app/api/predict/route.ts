@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
     try {
       // Use Render API (production) or local Python script (development)
       const isLocal = process.env.NODE_ENV === 'development';
-      const RENDER_API_URL = process.env.RENDER_API_URL || 'https://diction-api-4pb8.onrender.com';
+      const RENDER_API_URL = process.env.RENDER_API_URL || 'https://disease-prediction-api-4pb8.onrender.com';
       
       if (isLocal) {
         // Local development: Use Python script directly
