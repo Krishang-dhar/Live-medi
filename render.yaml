@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: disease-prediction-api
+    env: python
+    buildCommand: pip install -r web-app/api/requirements.txt
+    startCommand: cd web-app/api && python main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: PORT
+        value: 8000
+
