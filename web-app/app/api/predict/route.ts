@@ -112,8 +112,9 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      // Determine environment
-      const isLocal = process.env.NODE_ENV === 'development' || !process.env.VERCEL;
+      // Use Render API (production) or local Python script (development)
+      const isLocal = process.env.NODE_ENV === 'development';
+      const RENDER_API_URL = process.env.RENDER_API_URL || 'https://diction-api-4pb8.onrender.com';
       
       if (isLocal) {
         // Local development: Use Python script directly
@@ -125,12 +126,8 @@ export async function POST(request: NextRequest) {
         
         return NextResponse.json(prediction);
       } else {
-        // Production: Use Python serverless function
-        const baseUrl = process.env.VERCEL_URL 
-          ? `https://${process.env.VERCEL_URL}` 
-          : process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-        
-        const response = await fetch(`${baseUrl}/api/predict`, {
+        // Production: Use Render API
+        const response = await fetch(`${RENDER_API_URL}/api/predict`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -141,14 +138,15 @@ export async function POST(request: NextRequest) {
 
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
-          throw new Error(errorData.error || 'Prediction service unavailable');
+          throw new Error(errorData.error || errorData.detail || 'Prediction service unavailable');
         }
 
         const data = await response.json();
         return NextResponse.json({
-          ...data,
+          disease: data.disease,
+          symptoms_count: data.symptoms_count || symptoms.length,
           timestamp: new Date().toISOString(),
-          model_used: data.model_used || 'random_forest'
+          model_used: 'random_forest'
         });
       }
     } catch (error) {
